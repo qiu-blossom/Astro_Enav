@@ -21,39 +21,44 @@ export const CATEGORY_CONFIG = {
        }
     ]
   },
-  research: {
-    name: '动漫壁纸',
-    icon: 'fas fa-flask',
+  anime: {
+    name: '动漫资源',
+    icon: 'fa fa-film',
     subItems: [
       {
-        id: 'bioinfo',
-        name: '生物信息',
-        icon: 'fas fa-dna'
+        id: 'anime',
+        name: '动漫网站',
+        icon: 'fa fa-film'
       },
+      {
+        id: 'subtitle',
+        name: '字幕资源',
+        icon: 'fa fa-file-text-o'
+      }
+    ]
+  },
+  cloud: {
+    name: '网盘搜索',
+    icon: 'fas fa-cloud',
+    subItems: [
       {
         id: 'cloud',
-        name: '云服务器',
-        icon: 'fas fa-server'
-      }
+        name: '网盘搜索',
+        icon: 'fas fa-cloud'
+      },
     ]
   },
-  music: {
-    name: '音乐',
-    icon: 'fas fa-music',
+  editor: {
+    name: '编程资源',
+    icon: 'fa fa-desktop',
     subItems: [
       {
-        id: 'listen',
-        name: '听音乐',
-        icon: 'fas fa-dna'
-      },
-      {
-        id: 'ty',
-        name: '网易云',
-        icon: 'fas fa-server'
-      }
+        id: 'editor',
+        name: '编程资源',
+        icon: 'fa fa-desktop'
+       }
     ]
   },
-  // 其他分类...
 };
 
 // 辅助方法

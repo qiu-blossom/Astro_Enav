@@ -1,18 +1,11 @@
 // 常用工具分类
 export default [
   {
-    url: "https://www.yuque.com",
-    title: "语雀",
-    description: "专业的云端知识库",
-    logo: "images/logos/%e8%af%ad%e9%9b%80.jpg",
+    url: "https://www.blueke.top",
+    title: "博客",
+    description: "作者Blog，欢迎来访！",
+    logo: "images/logo.png",
     id: "yuque"
-  },
-  {
-    url: "https://astro.build",
-    title: "Astro",
-    description: "现代静态站点生成器",
-    logo: "images/logos/Astro.jpg",
-    id: "astro"
   },
   {
     url: "https://github.com",
