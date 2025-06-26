@@ -5,18 +5,21 @@ import SiteCard from './SiteCard.astro';
 interface Props {
   category: string;
   displayName: string; 
-  icon: string;       
+  mainIcon: string;
+  subCategoryName: string;
+  subCategoryIcon: string;
   sites: Array<any>;
 }
-const { displayName, icon, sites } = Astro.props;
 
-
+const { displayName, mainIcon, subCategoryName, subCategoryIcon, sites } = Astro.props;
 ---
 
 <div class="category-section">
   <h4 class="text-gray text-lg mb-4">
-    <i class={`${icon} mr-1`}></i> 
+    <i class={`${mainIcon} mr-1`}></i> 
     {displayName} 
+      <i class={`${subCategoryIcon} mr-1 fa-lg`}></i>
+      {subCategoryName}
   </h4>
   <div class="row">
     {sites.map((site) => (
@@ -24,4 +27,3 @@ const { displayName, icon, sites } = Astro.props;
     ))}
   </div>
 </div>
-

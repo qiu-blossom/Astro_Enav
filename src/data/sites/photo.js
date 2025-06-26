@@ -1,4 +1,4 @@
-// 开发工具分类
+// 常用工具分类
 export default [
   {
     url: "https://www.yuque.com",

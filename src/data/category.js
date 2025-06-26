@@ -6,12 +6,23 @@ export const CATEGORY_CONFIG = {
       {
         id: 'common',
         name: '常用工具',
-        icon: 'far fa-star'
+        icon: 'iconfont icon-heart'
       }
     ]
   },
+   photo: {
+    name: '壁纸网站',
+    icon: 'fas  fa-camera',
+    subItems: [
+      {
+        id: 'animephoto',
+        name: '动漫壁纸',
+        icon: 'iconfont icon-tag'
+       }
+    ]
+  },
   research: {
-    name: '科研办公',
+    name: '动漫壁纸',
     icon: 'fas fa-flask',
     subItems: [
       {
@@ -52,3 +63,5 @@ export const getSubItems = (categoryId) => CATEGORY_CONFIG[categoryId]?.subItems
 // 新增获取名称和图标的专用方法
 export const getCategoryName = (key) => CATEGORY_CONFIG[key]?.name || key;
 export const getCategoryIcon = (key) => CATEGORY_CONFIG[key]?.icon || 'fas fa-circle';
+
+

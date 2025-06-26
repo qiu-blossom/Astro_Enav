@@ -5,22 +5,42 @@ import Search from '../components/Search.astro';
 import Footer from '../components/Footer.astro';
 
 import CategorySection from '../components/CategorySection.astro';
-import { getCategoryName, getCategoryIcon } from '../data/category';
 import { SITE_DESCRIPTION, SITE_FAVICON, SITE_TITLE } from '../settings';
-// 动态加载分类数据
-const categoryFiles = import.meta.glob('../data/sites/*.js');
-const categories = Object.keys(categoryFiles).map(path => {
-  const fileName = path.split('/').pop(); // 可能是 undefined
-  return fileName?.replace('.js', '') ?? ''; // 安全处理
-}).filter(Boolean);
-const categoryData = await Promise.all(
-  categories.map(async (category) => ({
-    name: category,
-    displayName: getCategoryName(category), 
-    icon: getCategoryIcon(category),
-    sites: (await import(`../data/sites/${category}.js`)).default
-  }))
-);
+import { CATEGORY_CONFIG } from '../data/category';
+
+// 动态加载所有二级分类的网站数据
+const loadSubCategorySites = async () => {
+  const allSubCategories = [];
+  
+  // 遍历所有主分类
+  for (const [categoryId, categoryInfo] of Object.entries(CATEGORY_CONFIG)) {
+    // 获取当前主分类的所有二级分类
+    const subCategories = categoryInfo.subItems || [];
+    
+    // 加载每个二级分类的网站数据
+    for (const subCategory of subCategories) {
+      try {
+        // 动态导入二级分类的网站数据
+        const sitesModule = await import(`../data/sites/${subCategory.id}.js`);
+        allSubCategories.push({
+          ...subCategory,
+          sites: sitesModule.default || []
+        });
+      } catch (error) {
+        console.warn(`[分类数据] 加载 ${subCategory.id}.js 失败:`, error);
+        allSubCategories.push({
+          ...subCategory,
+          sites: []
+        });
+      }
+    }
+  }
+  
+  return allSubCategories;
+};
+
+// 加载所有二级分类数据
+const categoryData = await loadSubCategorySites();
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -124,14 +144,17 @@ const categoryData = await Promise.all(
     <Header />
     <Search />
     <div id="content" class="content-site customize-site">
-      {categoryData.map(({ name, displayName, icon, sites }) => (
-        <CategorySection 
-          category={name}
-          displayName={displayName} 
-          icon={icon}              
-          sites={sites}
-        />
-      ))}
+      {categoryData.map(({ id, name, icon, displayName, mainIcon, sites }) => (
+          <CategorySection 
+            key={id}
+            category={id}
+            displayName={displayName} 
+            mainIcon={mainIcon}
+            subCategoryName={name}
+            subCategoryIcon={icon}
+            sites={sites}
+          />
+        ))}
     </div>
     <Footer />
   </div>
