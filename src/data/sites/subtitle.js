@@ -10,15 +10,8 @@ export default [
   {
     url: "https://www.opensubtitles.com/",
     title: "opensubtitles",
-    description: "动漫壁纸网站，质量还行",
-    logo: "images/logos/konachan.net.ico",
-    id: "konachan"
-    },
-    {
-    url: "https://www.opensubtitles.com/",
-    title: "opensubtitles",
-    description: "动漫壁纸网站，质量还行",
-    logo: "images/logos/konachan.net.ico",
-    id: "konachan"
+    description: "备选，用的不多，一天20个下载名额",
+    logo: "",
+    id: "opensubtitles"
     },
 ];
