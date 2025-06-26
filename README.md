@@ -39,6 +39,10 @@
 
 - [ ] 友情链接
 
+#### 进度
+- 尝试删除popper.min.js
+- 尝试删除clipboard.min-5.6.2.js、tooltip-extend.js
+
 ### 部署
 
 你可以一键fork本项目到vercel上部署，或者使用以下命令在本地运行：

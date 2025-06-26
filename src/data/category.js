@@ -10,7 +10,7 @@ export const CATEGORY_CONFIG = {
       }
     ]
   },
-   photo: {
+   animephoto: {
     name: '壁纸网站',
     icon: 'fas  fa-camera',
     subItems: [
