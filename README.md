@@ -5,6 +5,12 @@
 
 本人前端基础很差，如果你发现有问题，欢迎提交issue或者pr。
 
+## 演示站点
+
+- [https://astro-enav.vercel.app/](https://astro-enav.vercel.app/)
+
+- [https://nav.blueke.top/](https://nav.blueke.top/)
+
 ### 功能
 
 #### 网站收录
