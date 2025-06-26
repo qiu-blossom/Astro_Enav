@@ -41,7 +41,10 @@
 
 #### 进度
 - 尝试删除popper.min.js
-- 尝试删除clipboard.min-5.6.2.js、tooltip-extend.js
+- 尝试删除tooltip-extend.js
+- 尝试删除app-mini.js
+- 尝试删除jquery-ui.min.1.12.1.js
+- 尝试删除lozad.js
 
 ### 部署
 
