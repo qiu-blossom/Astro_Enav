@@ -1,3 +1,4 @@
+为什么我的下面的网站提交，友情链接到上面了
 ---
 // src/components/Sidebar.astro
 import { getCategoryList } from '../data/category';
@@ -68,6 +69,34 @@ const categories = getCategoryList();
     </div>
   </div>
 </div>
+
+<!-- 底部固定链接 -->
+    <div class="border-top py-2 border-color">
+      <div class="flex-bottom">
+        <ul>
+          <li class="sidebar-item">
+            <a href="/about" target="_blank">
+              <i class="fas fa-file-upload icon-fw icon-lg mr-2"></i>
+              <span>网站提交</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#friendlink" class="smooth">
+              <i class="fab fa-staylinked icon-fw icon-lg mr-2"></i>
+              <span>友情链接</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/about">
+              <i class="fa fa-info-circle icon-fw icon-lg mr-2"></i>
+              <span>关于导航</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
 <!-- 添加平滑滚动脚本 -->
 <script is:inline>
 document.addEventListener('DOMContentLoaded', () => {

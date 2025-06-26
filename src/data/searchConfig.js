@@ -4,8 +4,8 @@ export const searchGroups = [
     id: 'group-a',
     label: '常用',
     engines: [
+      { id: 'type-bing', label: '必应', url: 'https://www.bing.com/search?q=', placeholder: '微软 Bing 搜索' },
       { id: 'type-baidu', label: '百度', url: 'https://www.baidu.com/s?wd=', placeholder: '百度一下，你就知道' },
-      { id: 'type-bing', label: '必应', url: 'https://cn.bing.com/search?q=', placeholder: '微软 Bing 搜索' },
       { id: 'type-google', label: '谷歌', url: 'https://www.google.com/search?q=', placeholder: '谷歌搜索' },
       { id: 'type-anaconda', label: '软件', url: 'https://anaconda.org/search?q=', placeholder: 'Anaconda 软件搜索' },
       { id: 'type-pubmed', label: '文献', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=', placeholder: 'PubMed 搜索/文章标题/关键字' }
@@ -71,8 +71,8 @@ export const searchGroups = [
 
 // 设置默认搜索引擎(百度)
 export const defaultSearch = {
-  id: 'type-baidu',
-  label: '百度',
-  url: 'https://www.baidu.com/s?wd=',
-  placeholder: '百度一下，你就知道'
+  id: 'type-bing',
+  label: '必应',
+  url: 'https://www.bing.com/search?q=',
+  placeholder: '微软 Bing 搜索'
 };
