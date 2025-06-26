@@ -13,5 +13,12 @@ export default [
     description: "代码托管平台",
     logo: "/images/logos/github.jpg",
     id: "github"
+  },
+  {
+    url: "https://vercel.com/",
+    title: "Vercel",
+    description: "项目托管平台,我许多项目都托管到上面啦!",
+    logo: "/images/logos/vercel.ico",
+    id: "Vercel"
   }
 ];
