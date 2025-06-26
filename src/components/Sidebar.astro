@@ -1,0 +1,94 @@
+---
+// src/components/Sidebar.astro
+import { getCategoryList } from '../data/category';
+import { SITE_LOGO, SITE_LOGO_DARK, SITE_TITLE } from '../settings';
+
+const categories = getCategoryList();
+---
+
+<div id="sidebar" class="sticky sidebar-nav fade animate-nav" style="width: 170px">
+  <div class="modal-dialog h-100 sidebar-nav-inner">
+    <!-- Logo部分 -->
+    <div class="sidebar-logo border-bottom border-color">
+  <div class="logo overflow-hidden">
+    <a href="/" class="logo-expanded inline-flex items-center gap-2">
+      <img src={SITE_LOGO} height="40" class="logo-light" alt={SITE_TITLE}>
+      <img src={SITE_LOGO_DARK} height="40" class="logo-dark d-none" alt={SITE_TITLE}>
+      <span style="font-size: 20px; font-weight: bold;">{SITE_TITLE}</span>
+    <a href="/" class="logo-collapsed inline-flex items-center gap-2">
+      <img src={SITE_LOGO} height="40" class="logo-light" alt={SITE_TITLE}>
+      <img src={SITE_LOGO_DARK} height="40" class="logo-dark d-none" alt={SITE_TITLE}>
+    </a>
+  </div>
+</div>
+    <!-- 动态生成分类菜单 -->
+    <div class="sidebar-menu flex-fill">
+      <div class="sidebar-scroll">
+        <div class="sidebar-menu-inner">
+          <ul>
+            {
+              categories.map(([id, category]) => {
+                const hasSubItems = category.subItems?.length > 1;
+                const firstSubItemId = category.subItems?.[0]?.id || id;
+                const dataChange = hasSubItems ? { 'data-change': `#${category.subItems[0].id}` } : {};
+                
+                return (
+                  <li class={`sidebar-item ${hasSubItems ? 'has-submenu' : ''}`}>
+                    <a 
+                      href={`#${firstSubItemId}`}
+                      class="smooth"
+                      {...dataChange}
+                    >
+                      <i class={`${category.icon} fa-lg icon-fw icon-lg mr-2`}></i>
+                      <span>{category.name}</span>
+                      {hasSubItems && (
+                        <i class="iconfont icon-arrow-r-m sidebar-more text-sm"></i>
+                      )}
+                    </a>
+                    {hasSubItems && (
+                      <ul class="submenu">
+                        {category.subItems.map(subItem => (
+                          <li>
+                            <a href={`#${subItem.id}`} class="smooth">
+                              <span>{subItem.name}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部固定链接 -->
+    <div class="border-top py-2 border-color">
+      <div class="flex-bottom">
+        <ul>
+          <li class="sidebar-item">
+            <a href="/about" target="_blank">
+              <i class="fas fa-file-upload icon-fw icon-lg mr-2"></i>
+              <span>网站提交</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#friendlink" class="smooth">
+              <i class="fab fa-staylinked icon-fw icon-lg mr-2"></i>
+              <span>友情链接</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/about">
+              <i class="fa fa-info-circle icon-fw icon-lg mr-2"></i>
+              <span>关于导航</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

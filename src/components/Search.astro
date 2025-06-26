@@ -1,0 +1,74 @@
+---
+// src/components/Search.astro
+import { searchGroups, defaultSearch } from '../data/searchConfig';
+---
+<div class="header-big post-top css-color mb-4" id="search-bg">
+  <div class="s-search">
+    <div id="search" class="s-search mx-auto">
+      <!-- 搜索分类标签 -->
+      <div id="search-list-menu" class="hide-type-list">
+        <div class="s-type text-center">
+          <div class="s-type-list big">
+            <div class="anchor" style="position: absolute; left: 50%; opacity: 0;"></div>
+            {searchGroups.map(group => (
+              <label 
+                for={group.engines[0].id} 
+                data-id={group.id}
+              >
+                <span>{group.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+      <!-- 搜索表单 -->
+      <form 
+        action={defaultSearch.url} 
+        method="get" 
+        target="_blank" 
+        class="super-search-fm"
+      >
+        <input 
+          type="text" 
+          id="search-text" 
+          class="form-control smart-tips search-key"
+          placeholder={defaultSearch.placeholder} 
+          style="outline:0" 
+          autocomplete="off"
+        />
+        <button class="submit" type="submit">
+          <i class="iconfont icon-search"></i>
+        </button>
+      </form>
+      <!-- 搜索引擎选项 -->
+      <div id="search-list" class="hide-type-list">
+        {searchGroups.map(group => (
+          <div class={`search-group ${group.id}`}>
+            <ul class="search-type">
+              {group.engines.map(engine => (
+                <li>
+                  <input 
+                    hidden 
+                    type="radio" 
+                    name="type" 
+                    id={engine.id}
+                    value={engine.url}
+                    data-placeholder={engine.placeholder}
+                    checked={engine.id === defaultSearch.id}
+                  />
+                  <label for={engine.id}>
+                    <span class="text-muted">{engine.label}</span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <!-- 搜索热词 -->
+      <div class="card search-smart-tips search-hot-text">
+        <ul id="word" style="display: none"></ul>
+      </div>
+    </div>
+  </div>
+</div>
