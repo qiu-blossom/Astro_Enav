@@ -1,7 +1,7 @@
 
 ## Astro_Enav
 
-基于Astro和WebStack-hugo开发的导航网站,原本是纯html,对Astro进行了一定适配(可能)基于Astro和WebStack-hugo开发的导航网站,原本是纯html,对Astro进行了一定适配(可能)。
+基于Astro和WebStack-hugo开发的导航网站,原本是纯html,对Astro进行了一定适配(可能)
 
 本人前端基础很差，如果你发现有问题，欢迎提交issue或者pr。
 
