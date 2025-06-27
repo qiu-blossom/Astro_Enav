@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
     site: 'https://nav.blueke.top/',
     integrations: [sitemap({
-      filter: (page) => page !== 'https://nav.blueke.top/',
+      filter: (page) => page == 'https://nav.blueke.top/',
     }),
 ],
     adapter: vercel(),
