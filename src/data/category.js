@@ -33,7 +33,7 @@ export const CATEGORY_CONFIG = {
       {
         id: 'subtitle',
         name: '字幕资源',
-        icon: 'fa fa-file-text-o'
+        icon: 'iconfont icon-tag'
       }
     ]
   },
