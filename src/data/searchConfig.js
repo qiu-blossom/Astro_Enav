@@ -15,11 +15,11 @@ export const searchGroups = [
     id: 'group-b',
     label: '搜索',
     engines: [
+      { id: 'type-bing1', label: '必应', url: 'https://www.bing.com/search?q=', placeholder: '微软 Bing 搜索' },
       { id: 'type-baidu1', label: '百度', url: 'https://www.baidu.com/s?wd=', placeholder: '百度一下，你就知道' },
       { id: 'type-google1', label: '谷歌', url: 'https://www.google.com/search?q=', placeholder: '谷歌搜索' },
       { id: 'type-360', label: '360', url: 'https://www.so.com/s?q=', placeholder: '360 好搜' },
       { id: 'type-sogo', label: '搜狗', url: 'https://www.sogou.com/web?query=', placeholder: '搜狗搜索' },
-      { id: 'type-bing1', label: '必应', url: 'https://cn.bing.com/search?q=', placeholder: '微软 Bing 搜索' },
       { id: 'type-sm', label: '神马', url: 'https://yz.m.sm.cn/s?q=', placeholder: 'UC 移动端搜索' }
     ]
   },
@@ -69,7 +69,7 @@ export const searchGroups = [
   }
 ];
 
-// 设置默认搜索引擎(百度)
+// 设置默认搜索引擎(必应)
 export const defaultSearch = {
   id: 'type-bing',
   label: '必应',

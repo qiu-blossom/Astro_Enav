@@ -1,0 +1,161 @@
+---
+// src/components/Utils/SearchModal.astro
+import { searchGroups, defaultSearch } from '@/data/searchConfig';
+---
+
+<div class="modal fade search-modal" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="search" class="s-search mx-auto my-4">
+          <div id="search-list" class="hide-type-list">
+            <!-- 分类标签 -->
+            <div class="s-type">
+              <span></span>
+              <div class="s-type-list">
+                {searchGroups.map((group, index) => (
+                  <label 
+                    for={`m_${group.engines[0].id}`}
+                    data-id={group.id}
+                    class={index === 0 ? 'active' : ''}
+                    key={group.id}
+                  >
+                    {group.label}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- 搜索引擎组 -->
+            <div class="search-groups-container">
+              {searchGroups.map((group, index) => (
+                <div 
+                  class={`search-group ${group.id}`}
+                  style={`display: ${index === 0 ? 'block' : 'none'};`}
+                  key={group.id}
+                >
+                  <span class="type-text text-muted">{group.label}</span>
+                  <ul class="search-type">
+                    {group.engines.map(engine => (
+                      <li key={engine.id}>
+                        <input
+                          type="radio"
+                          name="type2"
+                          id={`m_${engine.id}`}
+                          value={engine.url}
+                          data-placeholder={engine.placeholder}
+                          checked={engine.id === defaultSearch.id}
+                          hidden
+                        />
+                        <label for={`m_${engine.id}`}>
+                          <span class="text-muted">{engine.label}</span>
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- 搜索表单 -->
+          <form 
+            action={defaultSearch.url} 
+            method="get" 
+            target="_blank" 
+            class="super-search-fm"
+          >
+            <input
+              type="text"
+              id="m_search-text"
+              class="form-control smart-tips search-key"
+              autocomplete="off"
+              placeholder={defaultSearch.placeholder}
+              style="outline:0"
+              required
+            />
+            <button type="submit">
+              <i class="iconfont icon-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div style="position: absolute;bottom: -40px;width: 100%;text-align: center;">
+        <a href="javascript:" data-dismiss="modal">
+          <i class="iconfont icon-close-circle icon-2x" style="color: #fff;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 分组切换脚本 -->
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  // 切换分组函数
+  function switchGroup(groupId) {
+    // 更新标签激活状态
+    document.querySelectorAll('.s-type-list label').forEach(label => {
+      label.classList.toggle('active', label.dataset.id === groupId);
+    });
+    
+    // 切换分组显示
+    document.querySelectorAll('.search-group').forEach(group => {
+      group.style.display = group.classList.contains(groupId) ? 'block' : 'none';
+    });
+    
+    // 更新表单action和placeholder
+    const firstEngine = document.querySelector(`#m_${groupId.replace('group-', 'type-')}`);
+    if (firstEngine) {
+      updateSearchForm(firstEngine.value, firstEngine.dataset.placeholder);
+    }
+  }
+
+  // 更新搜索表单
+  function updateSearchForm(action, placeholder) {
+    const form = document.querySelector('.super-search-fm');
+    const input = document.getElementById('m_search-text');
+    if (form) form.action = action;
+    if (input && placeholder) input.placeholder = placeholder;
+  }
+
+  // 绑定分组切换事件
+  document.querySelectorAll('.s-type-list label').forEach(label => {
+    label.addEventListener('click', function() {
+      switchGroup(this.dataset.id);
+    });
+  });
+  
+  // 绑定引擎切换事件
+  document.querySelectorAll('input[name="type2"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (this.checked) {
+        updateSearchForm(this.value, this.dataset.placeholder);
+      }
+    });
+  });
+  
+  // 模态框显示时重新初始化
+  const modal = document.getElementById('search-modal');
+  if (modal) {
+    modal.addEventListener('shown.bs.modal', function() {
+      // 重置为默认分组
+      switchGroup('group-a');
+    });
+  }
+});
+</script>
+<style>
+  .search-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.search-type li {
+  margin: 0;
+}
+</style>
