@@ -3,21 +3,23 @@
 import SiteCard from './SiteCard.astro';
 
 interface Props {
-  category: string;  // 分类的唯一标识符
-  displayName: string; 
-  mainIcon: string;
-  subCategoryName?: string;  // 改为可选
-  subCategoryIcon?: string;  // 改为可选
-  sites: Array<any>;
+  category: string;
+  subCategoryName?: string;
+  subCategoryIcon?: string;
+  sites: Array<{
+    name: string;
+    url: string;
+    icon?: string;
+    description?: string;
+    // 其他站点属性...
+  }>;
 }
 
-const { category, displayName, mainIcon, subCategoryName, subCategoryIcon, sites } = Astro.props;
+const { category, subCategoryName, subCategoryIcon, sites } = Astro.props;
 ---
 
 <div class="category-section" id={`category-${category.toLowerCase().replace(/\s+/g, '-')}`}>
   <h4 class="text-gray text-lg mb-4">
-    {mainIcon && <i class={`${mainIcon} mr-1`}></i>}
-    {displayName}
     {subCategoryIcon && <i class={`${subCategoryIcon} mr-1 fa-lg`}></i>}
     {subCategoryName && subCategoryName}
   </h4>

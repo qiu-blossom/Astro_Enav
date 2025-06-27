@@ -1,9 +1,6 @@
 ---
-import Sidebar from '../components/Sidebar.astro';
-import Header from '../components/Header.astro';
-import Search from '../components/Search.astro';
-import Footer from '../components/Footer.astro';
-
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
 import CategorySection from '../components/CategorySection.astro';
 import { SITE_DESCRIPTION, SITE_FAVICON, SITE_TITLE } from '../settings';
 import { CATEGORY_CONFIG } from '../data/category';
@@ -12,26 +9,19 @@ import { CATEGORY_CONFIG } from '../data/category';
 const loadSubCategorySites = async () => {
   const allSubCategories = [];
   
-  // 遍历所有主分类
   for (const [categoryId, categoryInfo] of Object.entries(CATEGORY_CONFIG)) {
-    // 获取当前主分类的所有二级分类
     const subCategories = categoryInfo.subItems || [];
     
-    // 加载每个二级分类的网站数据
     for (const subCategory of subCategories) {
       try {
-        // 动态导入二级分类的网站数据
         const sitesModule = await import(`../data/sites/${subCategory.id}.js`);
         allSubCategories.push({
           ...subCategory,
           sites: sitesModule.default || []
         });
       } catch (error) {
-        console.warn(`[分类数据] 加载 ${subCategory.id}.js 失败:`, error);
-        allSubCategories.push({
-          ...subCategory,
-          sites: []
-        });
+        console.warn(`加载失败: ${subCategory.id}`, error);
+        allSubCategories.push({ ...subCategory, sites: [] });
       }
     }
   }
@@ -39,111 +29,16 @@ const loadSubCategorySites = async () => {
   return allSubCategories;
 };
 
-// 加载所有二级分类数据
-const categoryData = await loadSubCategorySites();
+const categoryData = (await loadSubCategorySites()).map(item => ({
+  ...item,
+}));
 ---
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<style id="critical-css" type="text/css">
-    /* 加载动画核心样式 */
-    body {
-      margin: 0;
-      overflow: hidden; /* 初始隐藏内容 */
-    }
-    body.page-loading {
-      position: relative;
-    }
-    body.page-loading::before,
-    body.page-loading::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      transition: opacity 0.5s ease-out;
-    }
-    body.page-loading::before {
-      /* 优化：根据主题动态调整背景色 */
-      background: var(--loading-bg, #f9f9f9);
-      opacity: 1;
-    }
-    body.page-loading::after {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      border: 5px solid var(--loading-border, rgba(0, 0, 0, 0.15));
-      border-top-color: var(--loading-border-top, #333);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    
-    /* 加载完成后样式 */
-    body.page-loaded {
-      overflow: auto; /* 恢复滚动 */
-    }
-    body.page-loaded::before,
-    body.page-loaded::after {
-      opacity: 0;
-      pointer-events: none;
-    }
-    
-    /* 主题变量 - 优化加载动画颜色 */
-    body.io-grey-mode {
-      --bg-color: #f9f9f9;
-      --loading-bg: #f9f9f9;
-      --loading-border: rgba(0, 0, 0, 0.15);
-      --loading-border-top: #333;
-    }
-    body.io-black-mode {
-      --bg-color: #222;
-      --loading-bg: #222;
-      --loading-border: rgba(255, 255, 255, 0.15);
-      --loading-border-top: #fff;
-    }
-  </style>
-  
-  <meta charset="UTF-8" />
-  <style id="initial-theme">
-    body.io-grey-mode { background-color: #f9f9f9; }
-    body.io-black-mode { background-color: #222; }
-  </style>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f9f9f9" />
-  <title>{SITE_TITLE}</title>
-  <link rel="shortcut icon" href={SITE_FAVICON} />
-  <meta name="keywords" content={SITE_TITLE} />
-  <meta name="description" content={SITE_DESCRIPTION} />
 
-  <!-- 预加载关键资源 -->
-  <link rel="preload" href="/css/block-library.min-5.6.2.css" as="style">
-
-  <link rel="stylesheet" href="/css/iconfont-3.03029.1.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/bootstrap.min-4.3.1.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/style-3.03029.1.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/custom-style.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/fontawesome-5.15.4/css/all.min.css" type="text/css" />
-  
-  <script type="text/javascript" src="/js/jquery.min-3.2.1.js" id="jquery-js"></script>
-  <script src="/js/content-search.js" defer id="content-search-js"></script>
-</head>
-
-<body class="io-grey-mode page-loading">
-<div class="page-container">
-  <Sidebar />
-  <div class="main-content flex-fill grid-bg"> 
-    <Header />
-    <Search />
-    <div id="content" class="content-site customize-site">
+<Layout 
+  SITE_TITLE={SITE_TITLE}
+  SITE_DESCRIPTION={SITE_DESCRIPTION}
+  SITE_FAVICON={SITE_FAVICON}
+>
 如你所见，这是一个导航网站，基于Webstack-Hugo版本进行构建，迁移到了Astro。
 目前仍处于开发状态，如有bug欢迎联系！<br>
 仓库地址：https://github.com/Keduoli03/Astro_Enav
@@ -153,29 +48,21 @@ const categoryData = await loadSubCategorySites();
 PS：本页其实也还未完善，建议从跳转到首页开始使用
 <br>
 <br>
+<a href="./"><i class="fa fa-home fa-lg mr-2"></i>
+   <span>回到首页</span>
+</a>
 <br>
 <br>
 <br>
 <br>
 <br>
 <br>
-      {categoryData.map(({ id, name, icon, displayName, mainIcon, sites }) => (
-          <CategorySection 
-            key={id}
-            category={id}
-            displayName={displayName} 
-            mainIcon={mainIcon}
-            subCategoryName={name}
-            subCategoryIcon={icon}
-            sites={sites}
-          />
-        ))}
-    </div>
-    <Footer />
-  </div>
-</div>
-
- <script type="text/javascript" src="/js/night-mode.js"></script>
-</body>
-</html>
-
+  {categoryData.map((data) => (
+    <CategorySection 
+      category={data.id}
+      subCategoryName={data.name}
+      subCategoryIcon={data.icon}
+      sites={data.sites}
+    />
+  ))}
+</Layout>

@@ -1,0 +1,17 @@
+---
+// src/pages/about.astro
+import WalineComment from '@/components/Utils/WalineComment.astro';
+import Layout from '../layouts/Layout.astro';
+import { SITE_DESCRIPTION, SITE_FAVICON, SITE_TITLE } from '../settings';
+---
+
+<Layout 
+  SITE_TITLE={SITE_TITLE}
+  SITE_DESCRIPTION={SITE_DESCRIPTION}
+  SITE_FAVICON={SITE_FAVICON}
+>
+如果你有好的网站想要分享，欢迎在下方留言！
+<br>
+<WalineComment />
+
+</Layout>

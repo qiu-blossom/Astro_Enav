@@ -20,11 +20,8 @@ const loadSubCategorySites = async () => {
           sites: sitesModule.default || []
         });
       } catch (error) {
-        console.warn(`[分类数据] 加载 ${subCategory.id}.js 失败:`, error);
-        allSubCategories.push({
-          ...subCategory,
-          sites: []
-        });
+        console.warn(`加载失败: ${subCategory.id}`, error);
+        allSubCategories.push({ ...subCategory, sites: [] });
       }
     }
   }
@@ -32,7 +29,9 @@ const loadSubCategorySites = async () => {
   return allSubCategories;
 };
 
-const categoryData = await loadSubCategorySites();
+const categoryData = (await loadSubCategorySites()).map(item => ({
+  ...item,
+}));
 ---
 
 <Layout 
@@ -40,15 +39,12 @@ const categoryData = await loadSubCategorySites();
   SITE_DESCRIPTION={SITE_DESCRIPTION}
   SITE_FAVICON={SITE_FAVICON}
 >
-  {categoryData.map(({ id, name, icon, displayName, mainIcon, sites }) => (
+  {categoryData.map((data) => (
     <CategorySection 
-      key={id}
-      category={id}
-      displayName={displayName} 
-      mainIcon={mainIcon}
-      subCategoryName={name}
-      subCategoryIcon={icon}
-      sites={sites}
+      category={data.id}
+      subCategoryName={data.name}
+      subCategoryIcon={data.icon}
+      sites={data.sites}
     />
   ))}
 </Layout>
