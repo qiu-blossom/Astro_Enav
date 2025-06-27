@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nav.blueke.top/',
-    integrations: [sitemap()],
+    integrations: [sitemap({
+      filter: (page) => page !== 'https://nav.blueke.top/',
+    }),
+],
     adapter: vercel(),
 });
