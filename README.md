@@ -35,7 +35,7 @@
 
 - [x] 夜间模式修复：现在刷新不会重置为日间模式了
 
-- [ ] 网站提交
+- [x] 网站提交
 
 - [ ] 友情链接
 
@@ -51,7 +51,7 @@
 你可以一键fork本项目到vercel上部署，或者使用以下命令在本地运行：
 
 ```bash
-git clone
+git clone https://github.com/Keduoli03/Astro_Enav.git
 ```
 
 
