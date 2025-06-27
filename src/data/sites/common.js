@@ -15,11 +15,17 @@ export default [
     id: "github"
   },
   {
+    url: "https://vercel.com/",
+    title: "Vercel",
+    description: "项目托管平台,我许多项目都托管到上面啦!",
+    logo: "/images/logos/vercel.ico",
+    id: "Vercel"
+  },
+  {
     url: "https://test.ustc.edu.cn/",
     title: "中科大测速网站",
     description: "中国科技大学测速网站，要来测个速吗",
     logo: "/images/logos/test.ustc.edu.cn-favicon.ico",
     id: "ustc"
   }
-  
 ];
