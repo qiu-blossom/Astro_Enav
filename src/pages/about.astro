@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import CategorySection from '../components/CategorySection.astro';
 import { SITE_DESCRIPTION, SITE_FAVICON, SITE_TITLE } from '../settings';
 import { CATEGORY_CONFIG } from '../data/category';
+import WalineComment from '@/components/Utils/WalineComment.astro';
 
 // 动态加载所有二级分类的网站数据
 const loadSubCategorySites = async () => {
@@ -53,16 +54,8 @@ PS：本页其实也还未完善，建议从跳转到首页开始使用
 </a>
 <br>
 <br>
+如果你有什么好的建议，也欢迎在本页留言哦~
 <br>
 <br>
-<br>
-<br>
-  {categoryData.map((data) => (
-    <CategorySection 
-      category={data.id}
-      subCategoryName={data.name}
-      subCategoryIcon={data.icon}
-      sites={data.sites}
-    />
-  ))}
+<WalineComment />
 </Layout>
