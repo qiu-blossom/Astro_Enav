@@ -40,11 +40,12 @@
 - [ ] 友情链接
 
 #### 进度
-- 尝试删除popper.min.js
-- 尝试删除tooltip-extend.js
-- 尝试删除app-mini.js
-- 尝试删除jquery-ui.min.1.12.1.js
-- 尝试删除lozad.js
+- [x] 尝试删除popper.min.js
+- [x] 尝试删除tooltip-extend.js
+- [x] 尝试删除app-mini.js
+- [x] 尝试删除jquery-ui.min.1.12.1.js
+- [x] 尝试删除lozad.js
+- [x] 2025.06.29: 使用https://favicon.im/zh提供域名获取服务，不必再将网站图标下载到本地了
 
 ### 部署
 
