@@ -10,17 +10,6 @@ export const CATEGORY_CONFIG = {
       }
     ]
   },
-   animephoto: {
-    name: '壁纸网站',
-    icon: 'fas  fa-camera',
-    subItems: [
-      {
-        id: 'animephoto',
-        name: '动漫壁纸',
-        icon: 'iconfont icon-tag'
-       }
-    ]
-  },
   anime: {
     name: '动漫资源',
     icon: 'fa fa-film',
@@ -35,6 +24,28 @@ export const CATEGORY_CONFIG = {
         name: '字幕资源',
         icon: 'iconfont icon-tag'
       }
+    ]
+  },
+  reader: {
+    name: '阅读',
+    icon: 'fas  fa-book',
+    subItems: [
+      {
+        id: 'reader',
+        name: '电子书',
+        icon: 'fas  fa-book'
+       }
+    ]
+  },
+  animephoto: {
+    name: '壁纸网站',
+    icon: 'fas  fa-camera',
+    subItems: [
+      {
+        id: 'animephoto',
+        name: '动漫壁纸',
+        icon: 'iconfont icon-tag'
+       }
     ]
   },
   cloud: {
