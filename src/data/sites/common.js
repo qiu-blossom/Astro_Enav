@@ -17,7 +17,7 @@ export default [
   {
     url: "https://vercel.com/",
     title: "Vercel",
-    description: "项目托管平台,我许多项目都托管到上面啦!",
+    description: "代码托管平台,我许多项目都托管到上面啦!",
     logo: "/images/logos/vercel.ico",
     id: "Vercel"
   },
@@ -28,4 +28,13 @@ export default [
     logo: "/images/logos/test.ustc.edu.cn-favicon.ico",
     id: "ustc"
   }
+  ,
+  {
+    url: "https://favicon.im/zh",
+    title: "网站图标获取",
+    description: "即时获取和下载任何网站的图标。",
+    logo: "/images/logos/favicon.im.ico",
+    id: "ustc"
+  }
+  
 ];
