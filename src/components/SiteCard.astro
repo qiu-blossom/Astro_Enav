@@ -31,6 +31,19 @@ const {
   ...defaultData,
   ...Astro.props.data
 };
+
+// 从URL中提取域名用于favicon
+const getDomain = (url: string) => {
+  try {
+    const domain = new URL(url.startsWith('http') ? url : `https://${url}`).hostname;
+    return domain.replace('www.', '');
+  } catch {
+    return null;
+  }
+};
+
+const domain = getDomain(url);
+const faviconUrl = domain ? `https://favicon.im/${domain}` : logo;
 ---
 
 <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a">
@@ -53,7 +66,7 @@ const {
             <img 
               class="lazy" 
               src="/images/logos/default.webp" 
-              data-src={logo}
+              data-src={faviconUrl}
               onerror="this.src='/images/logos/default.webp'" 
               alt={title}
               loading="lazy"
