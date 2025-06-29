@@ -45,7 +45,7 @@
 - [x] 尝试删除app-mini.js
 - [x] 尝试删除jquery-ui.min.1.12.1.js
 - [x] 尝试删除lozad.js
-- [x] 2025.06.29: 使用https://favicon.im/zh提供域名获取服务，不必再将网站图标下载到本地了
+- [x] 2025.06.29: 使用https://favicon.im/zh 提供图标获取服务，不必再将网站图标下载到本地了
 
 ### 部署
 
