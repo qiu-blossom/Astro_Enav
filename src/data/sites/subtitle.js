@@ -7,6 +7,13 @@ export default [
         logo: "images/logos/assrt.png",
     id: "assrt"
   },
+ {
+    url: "https://zimuku.org/",
+    title: "字幕库",
+    description: "很多优质的字幕",
+    logo: "",
+    id: "zimuku"
+    },
   {
     url: "https://www.opensubtitles.com/",
     title: "opensubtitles",
