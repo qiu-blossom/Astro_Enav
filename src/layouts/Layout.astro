@@ -72,6 +72,39 @@ import '../styles/global.css';
       --loading-border-top: #fff;
     }
   </style>
+  <link rel="preload" href="/css/block-library.min-5.6.2.css" as="style">
+  <link rel="stylesheet" href="/css/iconfont-3.03029.1.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/css/bootstrap.min-4.3.1.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/css/style-3.03029.1.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/fontawesome-5.15.4/css/all.min.css" type="text/css" />
+  <script>
+    (function() {
+      // 读取夜间模式Cookie
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        return parts.length === 2 ? parts.pop().split(';').shift() : '';
+      }
+      
+      // 判断是否为夜间时间（22:00-6:00）
+      function isNightTime() {
+        const hour = new Date().getHours();
+        return hour > 22 || hour < 6;
+      }
+      
+      // 获取应该使用的模式
+      const cookieValue = getCookie('night_mode');
+      const shouldUseNightMode = cookieValue ? cookieValue === 'night' : isNightTime();
+      
+      // 立即设置body类名
+      if (shouldUseNightMode) {
+        document.documentElement.className = 'night-mode-loading';
+        document.body.className = 'io-black-mode page-loading';
+      } else {
+        document.body.className = 'io-grey-mode page-loading';
+      }
+    })();
+  </script>
   
   <meta charset="UTF-8" />
   <style id="initial-theme">
@@ -87,16 +120,16 @@ import '../styles/global.css';
   <meta name="keywords" content={SITE_TITLE} />
   <meta name="description" content={SITE_DESCRIPTION} />
 
-  <link rel="preload" href="/css/block-library.min-5.6.2.css" as="style">
-  <link rel="stylesheet" href="/css/iconfont-3.03029.1.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/bootstrap.min-4.3.1.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/style-3.03029.1.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/fontawesome-5.15.4/css/all.min.css" type="text/css" />
+  
   <script type="text/javascript" src="/js/jquery.min-3.2.1.js" id="jquery-js"></script>
   <script src="/js/content-search.js" defer id="content-search-js"></script>
+  
+  <!-- 防止夜间模式闪烁的预加载脚本 -->
+
 </head>
 
-<body class="io-grey-mode page-loading">
+<!-- 移除默认的io-grey-mode类 -->
+<body class="page-loading">
 <div class="page-container">
   <Sidebar />
   <div class="main-content flex-fill grid-bg"> 

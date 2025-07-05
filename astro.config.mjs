@@ -5,10 +5,14 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  experimental: {
+    preserveScriptOrder: true
+  },
     site: 'https://nav.blueke.top/',
     integrations: [sitemap({
       filter: (page) => page == 'https://nav.blueke.top/',
     }),
-],
+  ],
+    
     adapter: vercel(),
 });
