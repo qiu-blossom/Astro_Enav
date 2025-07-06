@@ -8,13 +8,6 @@ export default [
     id: "mikanani"
   },
   {
-    url: "https://bangumi.moe/",
-    title: "萌番组",
-    description: "传统BT动漫资源网站，收录了很多字幕组的动漫资源",
-    logo: "",
-    id: "bangumi"
-  },
-  {
     url: "https://acg.rip/",
     title: "ACG.RIP",
     description: "传统BT动漫资源网站，收录了很多字幕组的动漫资源",
